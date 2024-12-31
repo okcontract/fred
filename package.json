@@ -1,0 +1,48 @@
+{
+  "name": "@okcontract/fred",
+  "description": "Functional Reactive data EDitor",
+  "version": "0.1.0",
+  "private": false,
+  "main": "dist/fred.umd.cjs",
+  "module": "dist/fred.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/fred.js",
+      "require": "./dist/fred.umd.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "dependencies": {
+    "@okcontract/cells": "^0.3.3",
+    "@okcontract/lambdascript": "^0.1.0",
+    "@okcontract/multichain": "^0.1.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@types/node": "^22.5.4",
+    "@vitest/coverage-v8": "^2.0.5",
+    "happy-dom": "^15.7.3",
+    "immer": "^10.0.4",
+    "terser": "^5.26.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.2.11",
+    "vitest": "^2.0.5"
+  },
+  "scripts": {
+    "build": "npm run format && vite build",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "definitions": "tsc --project tsconfig.build.json",
+    "prepublishOnly": "npm test && npm run build && npm run check && npm run definitions",
+    "check": "npx @biomejs/biome check src",
+    "format": "npx @biomejs/biome format src --write && npx @biomejs/biome check src --write",
+    "formatReadme": "prettier README.md --prose-wrap always --print-width 78 -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/okcontract/editor.git"
+  },
+  "author": "Henri Binsztok",
+  "license": "Apache-2.0"
+}

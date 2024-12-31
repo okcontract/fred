@@ -1,0 +1,9 @@
+node_modules
+dist
+*.dot
+src/*.dot
+src/*.png
+README.html
+coverage
+src/parser/λs.js
+src/parser/λs.terms.js
