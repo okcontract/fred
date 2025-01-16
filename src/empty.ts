@@ -138,7 +138,7 @@ export const emptyValueOfTypeDefinitionAux = async (
         const def = await evalTypeAux(
           proxy,
           types,
-          await fn().consolidatedValue,
+          await fn().get(),
           undefined,
           false
         );
