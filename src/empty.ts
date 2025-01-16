@@ -96,13 +96,13 @@ export const emptyValueOfTypeDefinitionAux = async (
     return emptyValueOfTypeDefinitionAux(
       proxy,
       types,
-      await tyName().get(), // @todo (node, env)?
+      await tyName().consolidatedValue, // @todo (node, env)?
       options
     );
   }
 
   if ("array" in ty) {
-    const arrayTy = await ty.array().get();
+    const arrayTy = await ty.array().consolidatedValue;
     if (arrayTy instanceof Error) throw arrayTy;
     if (
       options.oneElementInArray ||
@@ -130,7 +130,7 @@ export const emptyValueOfTypeDefinitionAux = async (
   if ("object" in ty) {
     if (options?.skipNestedObject) return {};
     // console.log("object:", { ty });
-    const objectTy = await ty.object?.get();
+    const objectTy = await ty.object?.consolidatedValue;
     if (objectTy instanceof Error) throw objectTy;
     return asyncReduce(
       Object.entries(objectTy),
@@ -138,7 +138,7 @@ export const emptyValueOfTypeDefinitionAux = async (
         const def = await evalTypeAux(
           proxy,
           types,
-          await fn().get(),
+          await fn().consolidatedValue,
           undefined,
           false
         );
